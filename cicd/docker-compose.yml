@@ -1,0 +1,41 @@
+version: '3.3'
+
+services:
+
+  api:
+    image: 'docker-spring-boot-postgres:latest'
+    build:
+      context: ../api
+      dockerfile: ../cicd/Dockerfile.back
+    container_name: api
+    depends_on:
+      - db
+    environment:
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+    ports:
+      - "1337:1337"
+
+  client:
+    build:
+      context: ../ui
+      dockerfile: ../cicd/Dockerfile.front
+    ports:
+      - "80:80"
+    container_name: ui
+    links:
+      - api
+
+  db:
+    image: postgres
+    container_name: db
+    volumes:
+      - ../api/sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - .:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_USER: "postgres"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+

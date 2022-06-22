@@ -1,0 +1,23 @@
+server:
+  port: 1337
+spring:
+  datasource:
+    url: "jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/plantsitter?currentSchema=plantsitter"
+    username: plantsitter_user
+    password: plantsitter_user
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+  liquibase:
+    enabled: true
+    change-log: 'classpath:db-migrations/changelog.xml'
+    user: plantsitter
+    password: plantsitter
+    contexts: dev
+plantsitter:
+  action-mode: wifi
+  wifi:
+    mcu-host: http://192.168.1.87
+logging:
+  level:
+    root: ${LOGGING_ROOT:INFO}
+    com.letowski: ${LOG_LEVEL:INFO}

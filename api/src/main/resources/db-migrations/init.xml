@@ -1,0 +1,23 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+    <changeSet author="SLitvinov" id="initial-scheme">
+        <createTable tableName="action_log">
+            <column defaultValueComputed="uuid_generate_v4()" name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="action_log_pk"/>
+            </column>
+            <column name="created_at" type="datetime"/>
+            <column name="type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="system_properties">
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="system_properties_pk"/>
+            </column>
+            <column name="value" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
