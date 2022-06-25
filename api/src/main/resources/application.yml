@@ -16,7 +16,7 @@ spring:
 plantsitter:
   action-mode: wifi
   wifi:
-    mcu-host: http://192.168.1.87
+    mcu-host: ${MCU_HOST:http://192.168.1.87}
 logging:
   level:
     root: ${LOGGING_ROOT:INFO}
