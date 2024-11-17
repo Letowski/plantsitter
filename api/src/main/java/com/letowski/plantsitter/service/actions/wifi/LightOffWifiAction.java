@@ -22,6 +22,6 @@ public class LightOffWifiAction implements LightOffAction {
     @Override
     public void executeUnsafe() {
         log.info("LightOffAction");
-        client.relay1on();
+        client.relay1off();
     }
 }

@@ -16,12 +16,12 @@ public class LightOnWifiAction implements LightOnAction {
     private McuClient client;
 
     public LightOnWifiAction() {
-        log.info("setUp LightOffAction");
+        log.info("setUp LightOnAction");
     }
 
     @Override
     public void executeUnsafe() {
-        log.info("LightOffAction");
-        client.relay1off();
+        log.info("LightOnAction");
+        client.relay1on();
     }
 }
